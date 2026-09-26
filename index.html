@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReturnisShop — Hardware & Gadgets Verificate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ═══════════════════════════════════════════
+   DEPÔZIT — Dark Cyberpunk Theme
+   ═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0A0B;--card:#17181A;--line:#2E3033;
+  --cyan:#4CF3E0;--magenta:#FF3EC9;
+  --text:#E0E0E3;--muted:#7A7B80;
+  --font-body:'Space Grotesk',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);color:var(--text);
+  min-height:100vh;overflow-x:hidden;
+  position:relative;
+}
+/* Radial gradients */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 600px 600px at 10% 5%,rgba(76,243,224,.06),transparent),
+    radial-gradient(ellipse 600px 600px at 90% 5%,rgba(255,62,201,.05),transparent);
+}
+/* Grain overlay */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* ═══ HEADER ═══ */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,11,.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+header .container{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-circle{
+  width:40px;height:40px;border-radius:50%;
+  border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-weight:600;font-size:1.1rem;color:var(--cyan);
+  position:relative;flex-shrink:0;
+}
+.logo-circle::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--cyan);opacity:.25;
+  animation:glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 8px rgba(76,243,224,.15)}
+  50%{box-shadow:0 0 20px rgba(76,243,224,.3)}
+}
+.logo-text{font-size:1.3rem;font-weight:700;letter-spacing:.08em;color:var(--text)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.menu-wrap{position:relative}
+.menu-btn{
+  display:flex;align-items:center;gap:8px;padding:10px 18px;
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;
+  transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
+.menu-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.cart-btn{
+  display:flex;align-items:center;gap:8px;padding:10px 18px;
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;
+  transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
+.cart-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.cart-badge{
+  background:var(--magenta);color:#fff;font-size:.6rem;font-weight:600;
+  width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+/* Dropdown */
+.dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;min-width:200px;
+  background:var(--card);border:1px solid var(--line);z-index:200;
+  opacity:0;pointer-events:none;transform:translateY(-8px);transition:all .2s;
+}
+.dropdown.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.dropdown a{
+  display:flex;align-items:center;gap:10px;padding:14px 20px;font-size:.9rem;
+  font-family:var(--font-mono);transition:background .15s;border-bottom:1px solid var(--line);
+}
+.dropdown a:last-child{border-bottom:none}
+.dropdown a:hover{background:rgba(76,243,224,.06);color:var(--cyan)}
+
+/* ═══ HERO ═══ */
+.hero{padding:80px 0 40px;text-align:center;position:relative}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.hero h1 span{color:var(--cyan)}
+/* ═══ WHEEL SECTION ═══ */
+.wheel-section{padding:40px 0 20px;text-align:center}
+.wheel-wrapper{position:relative;width:480px;height:480px;margin:0 auto}
+.wheel-svg{width:100%;height:100%;transition:transform .8s cubic-bezier(.34,1.56,.64,1)}
+.wheel-svg clickable{pointer-events:all}
+.wheel-svg .slice{cursor:pointer;transition:opacity .2s,transform .2s;transform-origin:center}
+.wheel-svg .slice:hover{opacity:.9}
+.wheel-svg text{transition:fill .2s;fill:#E0E0E3}
+.wheel-svg .slice:hover text{fill:#4CF3E0}
+.wheel-label{
+  font-family:var(--font-mono);font-size:.95rem;font-weight:600;fill:#fff;
+  pointer-events:none;text-anchor:middle;dominant-baseline:central;
+}
+.subring-svg{
+  position:absolute;inset:0;pointer-events:none;
+  opacity:0;transition:opacity .5s;
+}
+.subring-svg.visible{opacity:1}
+.subring-svg .sub-slice{cursor:pointer;pointer-events:all;transition:opacity .2s}
+.subring-svg .sub-slice:hover path{stroke:#4CF3E0;opacity:.7}
+.subring-svg .sub-slice:hover .sub-text{fill:#4CF3E0}
+.subring-svg .sub-text{
+  font-family:var(--font-mono);font-size:.65rem;fill:var(--cyan);pointer-events:none;
+  text-anchor:middle;dominant-baseline:central;
+}
+/* Breadcrumb */
+.breadcrumb-bar{
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;flex-wrap:wrap;
+}
+.breadcrumb-bar span,.breadcrumb-bar a{
+  font-family:var(--font-mono);font-size:.78rem;color:var(--muted);transition:color .2s;
+}
+.breadcrumb-bar a{color:var(--cyan)}
+.breadcrumb-bar a:hover{text-decoration:underline}
+.breadcrumb-bar .sep{color:var(--line)}
+.reset-btn{
+  font-family:var(--font-mono);font-size:.72rem;color:var(--magenta);
+  margin-left:8px;padding:4px 10px;border:1px solid var(--magenta);background:transparent;
+  opacity:.7;transition:all .2s;
+}
+.reset-btn:hover{opacity:1;background:rgba(255,62,201,.08)}
+
+/* ═══ PRODUCTS GRID ═══ */
+.products-section{padding:40px 0 60px}
+.section-label{
+  font-family:var(--font-mono);font-size:.7rem;color:var(--cyan);letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:20px;text-align:center;
+}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.product-card{
+  background:var(--card);border:1px solid var(--line);cursor:pointer;
+  transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;
+}
+.product-card:hover{transform:translateY(-4px);border-color:rgba(76,243,224,.25);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.product-img-wrap{position:relative;height:200px;overflow:hidden;background:rgba(0,0,0,.3)}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.product-card:hover .product-img-wrap img{transform:scale(1.05)}
+.fav-btn{
+  position:absolute;top:10px;right:10px;width:36px;height:36px;z-index:2;
+  display:flex;align-items:center;justify-content:center;background:rgba(10,10,11,.7);
+  border:1px solid var(--line);transition:all .2s;
+}
+.fav-btn svg{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:1.8;transition:all .2s}
+.fav-btn.active svg{fill:#fff;stroke:#fff}
+.fav-btn.pop{animation:heartPop .35s ease}
+@keyframes heartPop{0%{transform:scale(1)}40%{transform:scale(1.3)}100%{transform:scale(1)}}
+.product-body{padding:18px}
+.product-code{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);margin-bottom:4px;letter-spacing:.05em}
+.product-condition{
+  display:inline-block;font-family:var(--font-mono);font-size:.62rem;
+  padding:2px 8px;border:1px solid var(--line);color:var(--muted);margin-bottom:10px;
+}
+.product-title{font-size:1rem;font-weight:600;margin-bottom:6px;line-height:1.3}
+.product-desc{font-size:.82rem;color:var(--muted);margin-bottom:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.counters{font-family:var(--font-mono);font-size:.65rem;color:var(--muted);display:flex;gap:12px}
+.product-price{font-family:var(--font-mono);font-size:1.3rem;font-weight:600;color:var(--cyan)}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.btn-add-cart{
+  font-family:var(--font-mono);font-size:.7rem;padding:5px 12px;
+  border:1px solid var(--cyan);background:transparent;color:var(--cyan);
+  letter-spacing:.04em;transition:all .2s;cursor:pointer;border-radius:4px;
+}
+.btn-add-cart:hover{background:rgba(76,243,224,.12)}
+
+/* ═══ PRODUCT PAGE ═══ */
+.product-page{display:none;padding:40px 0 60px}
+.product-page.active{display:block}
+
+/* ═══ CONTACT PAGE ═══ */
+.contact-page{max-width:560px;margin:0 auto;text-align:center}
+.contact-page h1{font-size:1.6rem;font-weight:700;margin-bottom:6px}
+.contact-page .subtitle{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);margin-bottom:28px}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.contact-form .af label{font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.contact-form input,.contact-form textarea,.contact-form select{
+  padding:10px 14px;background:var(--bg);border:1px solid var(--line);border-radius:6px;
+  color:var(--text);font-family:var(--font-mono);font-size:.85rem;width:100%;transition:border-color .2s;
+}
+.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{outline:none;border-color:var(--cyan)}
+.contact-form textarea{resize:vertical;min-height:120px;font-family:var(--font-body);font-size:.9rem}
+.contact-form .btn-submit{
+  background:var(--cyan);color:var(--bg);font-weight:700;font-family:var(--font-mono);
+  padding:12px 24px;border:none;border-radius:6px;font-size:.9rem;letter-spacing:.05em;
+  transition:opacity .2s;cursor:pointer;
+}
+.contact-form .btn-submit:hover{opacity:.85}
+.contact-form .note{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);margin-top:-4px}
+.contact-sent{
+  text-align:center;padding:40px 20px;display:none;
+}
+.contact-sent h2{font-size:1.3rem;margin-bottom:8px;color:var(--cyan)}
+.contact-sent p{font-family:var(--font-mono);color:var(--muted);font-size:.85rem}
+.pd-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.pd-breadcrumb a,.pd-breadcrumb span{font-family:var(--font-mono);font-size:.75rem;color:var(--muted)}
+.pd-breadcrumb a{color:var(--cyan)}
+.pd-back{
+  display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);
+  font-size:.8rem;color:var(--cyan);margin-bottom:24px;transition:opacity .2s;
+}
+.pd-back:hover{opacity:.7}
+.pd-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;margin:0 auto}
+.pd-gallery .main-img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);background:var(--card)}
+.pd-thumbs{display:flex;gap:8px;margin-top:10px}
+.pd-thumbs img{width:70px;height:70px;object-fit:cover;border:1px solid var(--line);cursor:pointer;transition:border-color .2s;opacity:.6}
+.pd-thumbs img:hover,.pd-thumbs img.active{border-color:var(--cyan);opacity:1}
+.pd-info .pd-title{font-size:1.5rem;font-weight:700;margin-bottom:8px}
+.pd-info .pd-code{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);margin-bottom:6px}
+.pd-info .pd-condition{display:inline-block;font-family:var(--font-mono);font-size:.68rem;padding:3px 10px;border:1px solid var(--line);color:var(--muted);margin-bottom:16px}
+.pd-fav{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.pd-price{font-family:var(--font-mono);font-size:2rem;font-weight:600;color:var(--cyan);margin-bottom:16px}
+.pd-counters{font-family:var(--font-mono);font-size:.75rem;color:var(--muted);display:flex;gap:20px;margin-bottom:20px}
+.pd-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.pd-specs{margin-bottom:24px}
+.pd-specs h3{font-size:.95rem;font-weight:600;margin-bottom:12px;font-family:var(--font-mono);color:var(--muted)}
+.spec-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;font-size:.88rem}
+.spec-row .bullet{color:var(--cyan);font-family:var(--font-mono);flex-shrink:0;font-size:.7rem;padding-top:3px}
+.spec-row strong{color:var(--cyan);min-width:120px;font-weight:600}
+.pd-note{
+  border:1px solid var(--magenta);padding:14px 18px;margin-bottom:24px;
+  background:rgba(255,62,201,.04);font-size:.85rem;
+}
+.pd-note::before{content:'⚠ ';color:var(--magenta);font-weight:700}
+.pd-similar{margin-top:20px}
+.pd-similar h3{font-family:var(--font-mono);font-size:.75rem;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.similar-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.sim-card{background:var(--card);border:1px solid var(--line);padding:14px;cursor:pointer;transition:border-color .2s}
+.sim-card:hover{border-color:var(--cyan)}
+.sim-card h4{font-size:.85rem;font-weight:600;margin-bottom:4px}
+.sim-card .sim-code{font-family:var(--font-mono);font-size:.65rem;color:var(--muted)}
+.sim-card .sim-price{font-family:var(--font-mono);font-size:1rem;color:var(--cyan);font-weight:600;margin-top:8px}
+
+/* ═══ FOOTER ═══ */
+footer{background:var(--card);border-top:1px solid var(--line);padding:32px 0;text-align:center;margin-top:40px;position:relative;z-index:1}
+footer p{font-family:var(--font-mono);font-size:.75rem;color:var(--muted)}
+footer a{color:var(--cyan)}
+
+/* ═══ TOAST ═══ */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--cyan);color:var(--text);padding:10px 24px;border-radius:4px;font-family:var(--font-mono);font-size:.8rem;z-index:500;transition:transform .3s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ═══ PASSWORD MODAL ═══ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;background:rgba(10,10,11,.7);
+  backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:var(--card);border:1px solid var(--line);padding:28px;border-radius:8px;
+  text-align:center;width:min(360px,90vw);z-index:501;
+  transform:scale(.95);transition:transform .25s;
+}
+.modal-overlay.open .modal-box{transform:scale(1)}
+.modal-box h2{font-size:1.2rem;margin-bottom:8px}
+.modal-box p{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);margin-bottom:14px}
+.modal-box input{
+  width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--line);border-radius:6px;
+  color:var(--text);font-family:var(--font-mono);font-size:.9rem;transition:border-color .2s;margin-bottom:12px;
+}
+.modal-box input:focus{outline:none;border-color:var(--cyan)}
+.modal-error{color:var(--magenta);font-family:var(--font-mono);font-size:.75rem;min-height:18px;margin-top:4px}
+.modal-box .btn{padding:8px 24px;font-size:.85rem;border-radius:6px;width:100%}
+.modal-box .btn-admin-cyan{background:var(--cyan);color:var(--bg);font-weight:600;border:none}
+.modal-box .btn-admin-cyan:hover{opacity:.85}
+
+/* ═══ CART PAGE ═══ */
+.cart-page{display:none;padding:40px 0 60px}
+.cart-page.active{display:block}
+.cart-page .cart-items{flex:1;overflow-y:auto;padding:8px 0;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.cart-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-item-price{font-family:var(--font-mono);font-size:.75rem;color:var(--cyan);margin-top:2px}
+.cart-item-qty{display:flex;align-items:center;gap:6px}
+.cart-item-qty button{width:26px;height:26px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:.9rem;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.cart-item-qty button:hover{border-color:var(--cyan);color:var(--cyan)}
+.cart-item-qty-val{font-family:var(--font-mono);font-size:.85rem;min-width:20px;text-align:center}
+.cart-item-remove{background:none;border:none;color:var(--magenta);cursor:pointer;font-size:.9rem;padding:4px 6px;transition:opacity .2s}
+.cart-item-remove:hover{opacity:.7}
+.cart-empty{text-align:center;padding:30px;color:var(--muted);font-family:var(--font-mono);font-size:.85rem}
+.cart-footer{padding:14px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.cart-total{font-family:var(--font-mono);font-size:1rem;font-weight:700;color:var(--cyan);text-align:center}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:700px){
+  .pd-layout{grid-template-columns:1fr;gap:24px}
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .wheel-wrapper{width:400px;height:400px}
+}
+@media(max-width:560px){
+  .hero{padding:48px 0 24px}
+  .products-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .product-img-wrap{height:140px}
+  .product-body{padding:12px}
+  .product-title{font-size:.88rem}
+  .wheel-wrapper{width:320px;height:320px}
+  .menu-btn span,.cart-btn span{display:none}
+  header .container{height:60px}
+  .logo-text{font-size:1.1rem}
+}
+
+/* ═══ ADMIN OVERLAY ═══ */
+.admin-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(10,10,11,.8);backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.admin-overlay.open{opacity:1;pointer-events:all}
+.admin-panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:1001;
+  width:min(680px,100vw);height:100%;
+  background:var(--bg);border-left:1px solid var(--line);
+  overflow-y:auto;
+  transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:-10px 0 40px rgba(0,0,0,.5);
+}
+.admin-overlay.open + .admin-panel{transform:translateX(0)}
+.admin-close{
+  position:sticky;top:0;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;background:var(--card);border-bottom:1px solid var(--line);
+}
+.admin-close h2{font-size:1.1rem;font-weight:700}
+.admin-close button{
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);background:var(--card);color:var(--text);font-size:1.2rem;
+  transition:all .2s;border-radius:4px;
+}
+.admin-close button:hover{border-color:var(--magenta);color:var(--magenta)}
+.admin-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.admin-toolbar h2{flex:1 1 100%;font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.admin-toolbar .btn{padding:8px 20px;font-size:.8rem;border-radius:6px}
+.btn-admin-cyan{background:var(--cyan);color:var(--bg);font-weight:600;border:none}
+.btn-admin-cyan:hover{opacity:.85}
+.btn-admin-magenta{background:transparent;border:1px solid var(--magenta);color:var(--magenta)}
+.btn-admin-magenta:hover{background:rgba(255,62,201,.08)}
+.admin-card{background:var(--card);border:1px solid var(--line);margin-bottom:16px;overflow:hidden}
+.admin-card-header{display:flex;align-items:center;gap:10px;padding:12px 18px;background:rgba(76,243,224,.04)}
+.admin-card-header .ac-code{font-family:var(--font-mono);font-size:.72rem;color:var(--cyan);background:rgba(76,243,224,.1);padding:2px 8px;border-radius:4px}
+.admin-card-header .ac-name{flex:1;font-size:.9rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.admin-card-body{padding:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.af{display:flex;flex-direction:column;gap:4px}
+.af.full{grid-column:1 / -1}
+.af label{font-family:var(--font-mono);font-size:.62rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.af input,.af textarea,.af select{padding:8px 12px;background:var(--bg);border:1px solid var(--line);border-radius:6px;color:var(--text);font-family:var(--font-mono);font-size:.8rem;transition:border-color .2s;width:100%}
+.af input:focus,.af textarea:focus,.af select:focus{outline:none;border-color:var(--cyan)}
+.af textarea{resize:vertical;min-height:56px;font-family:var(--font-body)}
+.af img.img-preview{max-height:64px;object-fit:contain;margin-top:4px;background:rgba(0,0,0,.3);border-radius:4px}
+.spec-editor{margin-top:4px}
+.spec-row{display:flex;gap:8px;margin-bottom:6px;align-items:center}
+.spec-row input{flex:1;padding:6px 10px;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--text);font-family:var(--font-mono);font-size:.75rem;min-width:0}
+.spec-row button{width:28px;height:28px;background:#EF4444;color:#fff;border-radius:4px;font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1}
+.add-spec{font-family:var(--font-mono);font-size:.7rem;color:var(--cyan);padding:6px 0;display:inline-block;cursor:pointer}
+.add-spec:hover{text-decoration:underline}
+.af input[type=checkbox]{width:auto;margin-right:6px;accent-color:var(--magenta)}
+.img-thumb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.admin-empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.admin-empty p{font-family:var(--font-mono);margin-top:8px}
+.admin-summary{
+  display:flex;align-items:center;gap:16px;padding:12px 20px;
+  background:rgba(76,243,224,.04);border:1px solid var(--line);
+  margin-bottom:16px;font-family:var(--font-mono);font-size:.78rem;color:var(--cyan);
+}
+@media(max-width:700px){.admin-card-body{grid-template-columns:1fr}.img-thumb-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.admin-toolbar{flex-direction:column}.admin-toolbar .btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="container">
+    <a class="logo" onclick="goHome()">
+      <div class="logo-circle">R</div>
+      <div class="logo-text">ReturnisShop</div>
+    </a>
+    <div class="header-actions">
+      <div class="menu-wrap">
+        <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰ Menu</button>
+        <div class="dropdown" id="dropdown">
+          <a href="#" onclick="showFavorites();return false">★ Favorite</a>
+          <a href="#" onclick="openContact();return false">📬 Întrebări</a>
+          <a href="#" onclick="scrollToHero();return false">Despre noi</a>
+        </div>
+      </div>
+      <button class="cart-btn" onclick="openCart()" title="Cos">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <h1>ReturnisShop<span> — Hardware & Gadgets Verificate</span></h1>
+  </div>
+</section>
+
+<!-- ═══ CATEGORY WHEEL ═══ -->
+<section class="wheel-section" id="categories">
+  <div class="container">
+    <div class="section-label">Alege o categorie</div>
+    <div class="wheel-wrapper" id="wheelWrapper">
+      <svg class="wheel-svg" id="wheelSvg" viewBox="0 0 400 400"></svg>
+      <svg class="subring-svg" id="subringSvg" viewBox="0 0 400 400"></svg>
+    </div>
+    <div class="breadcrumb-bar" id="breadcrumb">
+      <a href="#" onclick="resetSelection();return false">Toate categoriile</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTS GRID ═══ -->
+<section class="products-section" id="shop">
+  <div class="container">
+    <div class="section-label">Produse</div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCT PAGE (hash-routed) ═══ -->
+<div class="product-page" id="productPage"></div>
+
+<!-- ═══ CONTACT PAGE (hash-routed) ═══ -->
+<div class="product-page" id="contactPage"></div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <p>© 2026 ReturnisShop — Toate drepturile rezervate. &nbsp; Contact: <a href="mailto:returnisboyshop@gmail.com">returnisboyshop@gmail.com</a> &nbsp;|&nbsp; <a href="#" onclick="openAdmin();return false" style="color:var(--muted)">⚙ Admin 🔒</a></p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- ═══ CART PAGE ═══ -->
+<div class="cart-page" id="cartPage"></div>
+
+<!-- ═══ ADMIN OVERLAY ═══ -->
+<div class="admin-overlay" id="adminOverlay" onclick="closeAdminOverlay(event)"></div>
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-close">
+    <h2>⚙ Admin Panel</h2>
+    <button onclick="closeAdmin()" title="Închide">✕</button>
+  </div>
+  <div class="container" id="adminContainer"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   DEPÔZIT — DATA ARRAYS (EDIT MANUALLY)
+   ═══════════════════════════════════════════════════════ */
+
+/*
+  CATEGORIES — edit this array to change the wheel slices.
+  Each category has a name and a list of subcategories.
+*/
+const categories = [
+  { name: 'Calculatoare',  subs: ['Laptopuri', 'Calculatoare desktop', 'Tablete', 'Monitoare'] },
+  { name: 'Periferice',    subs: ['Tastaturi', 'Mici', 'Boxe', 'Webcame'] },
+  { name: 'Componente',    subs: ['Procesoare', 'Carti grafice', 'RAM', 'Stocare SSD'] },
+  { name: 'Gaming',        subs: ['Consolă', 'Accesorii gaming', 'Jocuri', 'Headset-uri'] },
+  { name: 'Gadgeturi',     subs: ['Smartwatch', 'Dronă', 'Smartfon', 'Accesorii'] },
+  { name: 'Rețea',         subs: ['Router', 'Switch', 'Adaptoare WiFi', 'Cabluri'] },
+];
+
+/*
+  PRODUCTS — edit this array to add / change products.
+
+  Fields:
+    code       — product code (used in URL: #produs/CODE)
+    name       — product name
+    category   — exact name from categories[]
+    subcategory— exact name from categories[].subs[]
+    condition  — text shown on card (e.g. "Excelent", "Bun", "Acceptabil")
+    price      — number (shown in RON format)
+    desc       — short description
+    specs      — array of {label, value} objects
+    note       — optional important note (null or string)
+    promo      — true/false — shows "Promovare" badge
+    img        — placeholder URL or real path inside /imagini/
+    thumbs     — array of 4 image URLs (thumbnails)
+*/
+const products = [
+  {
+    code:'DP-001', name:'Laptop Dell Inspiron 15', category:'Calculatoare', subcategory:'Laptopuri',
+    condition:'Excelent', price:2499,
+    desc:'Laptop Dell Inspiron 15, procesor Intel Core i5, 8GB RAM, SSD 256GB, ecran 15.6" Full HD.',
+    specs:[{label:'Procesor',value:'Intel Core i5-1135G7'},{label:'RAM',value:'8GB DDR4'},{label:'Stocare',value:'SSD 256GB NVMe'},{label:'Ecranu',value:'15.6" FHD IPS'},{label:'Baterie',value:'Până la 7 ore'}],
+    note:'Baterie nouă instalată în iulie 2025.', promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Dell+Inspiron',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-002', name:'PC Gaming Ryzen', category:'Calculatoare', subcategory:'Calculatoare desktop',
+    condition:'Excelent', price:4999,
+    desc:'PC gaming complet, Ryzen 7 5700X, RTX 4060, 16GB RAM, SSD 1TB, carcasă mid-tower.',
+    specs:[{label:'Procesor',value:'AMD Ryzen 7 5700X'},{label:'Placa grafica',value:'NVIDIA RTX 4060 8GB'},{label:'RAM',value:'16GB DDR4 3200MHz'},{label:'Stocare',value:'SSD 1TB NVMe'},{label:'Sistem',value:'Windows 11 Pro'}],
+    note:null, promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=PC+Gaming',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-003', name:'Tableta Samsung Galaxy Tab', category:'Calculatoare', subcategory:'Tablete',
+    condition:'Bun', price:1299,
+    desc:'Samsung Galaxy Tab S6 Lite, 10.4", 64GB, cu stylus S Pen inclus.',
+    specs:[{label:'Ecranu',value:'10.4" TFT'},{label:'Procesor',value:'Exynos 1280'},{label:'RAM',value:'4GB'},{label:'Stocare',value:'64GB + microSD'},{label:'Stilou',value:'S Pen inclus'}],
+    note:'Ambalajul este uzat.', promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Galaxy+Tab',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-004', name:'Monitor LG 27" UltraGear', category:'Calculatoare', subcategory:'Monitoare',
+    condition:'Excelent', price:1599,
+    desc:'Monitor LG 27" IPS, 144Hz, 1ms, FreeSync Premium, perfect pentru gaming.',
+    specs:[{label:'Ecranu',value:'27" IPS'},{label:'Rezolutie',value:'2560x1440 WQHD'},{label:'Refresh',value:'144Hz'},{label:'Cândere',value:'1ms MPRT'},{label:'Adaptive',value:'FreeSync Premium'}],
+    note:'Ambalaj original inclus.', promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=LG+Monitor',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-005', name:'Tastatură Mecanică Keychron K2', category:'Periferice', subcategory:'Tastaturi',
+    condition:'Excelent', price:449,
+    desc:'Tastatură mecanică Keychron K2, switchuri Gateron Brown, RGB, Bluetooth 5.1.',
+    specs:[{label:'Switch-uri',value:'Gateron Brown'},{label:'Conectare',value:'BT 5.1 / USB-C'},{label:'Retroiluminare',value:'RGB per tast'},{label:'Baterie',value:'4000mAh'},{label:'Layout',value:'TKL 87 tasti'}],
+    note:null, promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Keychron+K2',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-006', name:'Mouse Logitech G502 Hero', category:'Periferice', subcategory:'Mici',
+    condition:'Excelent', price:299,
+    desc:'Mouse Logitech G502 Hero, 25600 DPI, RGB, 11 butoane programabile.',
+    specs:[{label:'Sensor',value:'HERO 25K'},{label:'DPI',value:'Până la 25600'},{label:'Butoane',value:'11 programabile'},{label:'Greutate',value:'121g'},{label:'Conectare',value:'USB'}],
+    note:'Butonul stânga ușor uzat — funcționează perfect.', promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=G502+Hero',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-007', name:'Boxe JBL Flip 6', category:'Periferice', subcategory:'Boxe',
+    condition:'Bun', price:599,
+    desc:'Boxe portabile JBL Flip 6, Bluetooth 5.1, JBL Pro Sound, rezistență la apă IP67.',
+    specs:[{label:'Audio',value:'JBL Pro Sound'},{label:'Bluetooth',value:'5.1'},{label:'Rezistență',value:'IP67'},{label:'Baterie',value:'12h'},{label:'Greutate',value:'540g'}],
+    note:null, promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=JBL+Flip+6',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-008', name:'Webcam Logitech C920 HD Pro', category:'Periferice', subcategory:'Webcame',
+    condition:'Acceptabil', price:199,
+    desc:'Webcam Logitech C920, 1080p Full HD, stereo audio, clip universal.',
+    specs:[{label:'Rezolutie',value:'1920x1080 Full HD'},{label:'Frecvență',value:'30fps'},{label:'Audio',value:'Stereo dual'},{label:'Montaj',value:'Clip + tripod'},{label:'Compatibilitate',value:'Windows / Mac'}],
+    note:'Lensa ușor zgâriată — calitatea imaginii este afectată în lumină slabă.', promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=C920+HD',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-009', name:'Procesor AMD Ryzen 7 5800X3D', category:'Componente', subcategory:'Procesoare',
+    condition:'Excelent', price:1899,
+    desc:'AMD Ryzen 7 5800X3D, 8 core / 16 fire, 3D V-Cache, AM4.',
+    specs:[{label:'Core-uri',value:'8 / 16'},{label:'Frecvență',value:'3.4 – 4.5 GHz'},{label:'Cache',value:'96MB 3D V-Cache'},{label:'Sockel',value:'AM4'},{label:'TDP',value:'105W'}],
+    note:'Vândut fără cooler.', promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Ryzen+7+5800X3D',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-010', name:'Card Grafic RTX 4070 Ti Super', category:'Componente', subcategory:'Carti grafice',
+    condition:'Excelent', price:4299,
+    desc:'NVIDIA GeForce RTX 4070 Ti Super, 16GB GDDR6X, ray tracing, DLSS 3.',
+    specs:[{label:'GPU',value:'AD104'},{label:'VRAM',value:'16GB GDDR6X'},{label:'Banda',value:'504 GB/s'},{label:'Ray Tracing',value:'3Gen RT Cores'},{label:'DLSS',value:'3.5'}],
+    note:null, promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=RTX+4070+Ti',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-011', name:'Storare SSD Samsung 990 Pro 2TB', category:'Componente', subcategory:'Stocare SSD',
+    condition:'Excelent', price:1599,
+    desc:'SSD Samsung 990 Pro 2TB, NVMe PCIe 4.0, citire 7450 MB/s.',
+    specs:[{label:'Capacitate',value:'2TB'},{label:'Interfață',value:'NVMe PCIe 4.0'},{label:'Citire',value:'7450 MB/s'},{label:'Scriere',value:'6900 MB/s'},{label:'Garanție',value:'5 ani'}],
+    note:'Niciodată instalat — cutie deschisă.', promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=SSD+990+Pro',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-012', name:'Consolă PS5 Slim', category:'Gaming', subcategory:'Consolă',
+    condition:'Excelent', price:2899,
+    desc:'PlayStation 5 Slim Digital Edition, 1TB SSD, 4K Blu-ray virtual.',
+    specs:[{label:'Stocare',value:'1TB SSD'},{label:'Rezolutie',value:'4K up to 120Hz'},{label:'Ray Tracing',value:'Da'},{label:' backwards',value:'PS4 compatibilitate'},{label:'USB',value:'3x port USB-A'}],
+    note:'Cu 2 controlleri DualSense incluse.', promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=PS5+Slim',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-013', name:'Headset SteelSeries Arctis Nova', category:'Gaming', subcategory:'Headset-uri',
+    condition:'Bun', price:499,
+    desc:'Headset SteelSeries Arctis Nova 3, audio surround 7.1, cască completă.',
+    specs:[{label:'Audio',value:'Surround 7.1 virtual'},{label:'Microfon',value:' retractabil'},{label:'Confort',value:'Suspensie fabricată'},{label:'Conectare',value:'USB + 3.5mm'},{label:'Compatibilitate',value:'PC / PS / Xbox'}],
+    note:null, promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Arctis+Nova',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-014', name:'Dronă DJI Mini 4 Pro', category:'Gadgeturi', subcategory:'Dronă',
+    condition:'Excelent', price:3299,
+    desc:'DJI Mini 4 Pro, 4K/60fps, 48MP, O3+ transmission, sub 249g.',
+    specs:[{label:'Camera',value:'4K/60fps, 48MP'},{label:'Greutate',value:'249g'},{label:'Autonomie',value:'34 min zbor'},{label:'Transmisie',value:'O3+, 12km'},{label:'Stabilizare',value:'3-axis gimbal'}],
+    note:'Harta și carcasă de transport incluse.', promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=DJI+Mini+4',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-015', name:'Smartwatch Garmin Venu 3', category:'Gadgeturi', subcategory:'Smartwatch',
+    condition:'Excelent', price:1799,
+    desc:'Garmin Venu 3, GPS, HRV, Animă de rezervă 5 zile, AMOLED.',
+    specs:[{label:'Ecranu',value:'1.4" AMOLED'},{label:'GPS',value:'Multi-band'},{label:'Baterie',value:'5 zile smartwatch'},{label:'Sănătate',value:'HRV Sleep Score'},{label:'Compatibilitate',value:'iOS / Android'}],
+    note:null, promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Garmin+Venu+3',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-016', name:'Router ASUS RT-AX86U Pro', category:'Rețea', subcategory:'Router',
+    condition:'Excelent', price:899,
+    desc:'Router ASUS RT-AX86U Pro, WiFi 6E, dual-band, port 2.5G.',
+    specs:[{label:'WiFi',value:'WiFi 6E (6GHz)'},{label:'Porturi',value:'1x 2.5G + 4x 1G'},{label:'Acces',value:'AiProtection'},{label:'Performanță',value:'5700 Mbps'},{label:'Coverage',value:'până la 250m²'}],
+    note:null, promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=RT-AX86U',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-017', name:'Switch Netgear GS308E', category:'Rețea', subcategory:'Switch',
+    condition:'Acceptabil', price:249,
+    desc:'Switch Netgear GS308E, 8 porturi Gigabit, gestionat, plug-and-play.',
+    specs:[{label:'Porturi',value:'8x Gigabit'},{label:'VLAN',value:'Suportat'},{label:'SNMP',value:'Da'},{label:'Rata',value:'10/100/1000 Mbps'},{label:'Rack',value:'Montabil 1U'}],
+    note:'Câteva petice miniore pe carcasă.', promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=GS308E',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+  {
+    code:'DP-018', name:'Smartfon Samsung Galaxy S24', category:'Gadgeturi', subcategory:'Smartfon',
+    condition:'Excelent', price:2599,
+    desc:'Samsung Galaxy S24, 12GB RAM, 256GB, camera 50MP, Galaxy AI.',
+    specs:[{label:'Procesor',value:'Snapdragon 8 Gen 3'},{label:'Ecranu',value:'6.2" FHD+ AMOLED 120Hz'},{label:'Camera',value:'50MP OIS'},{label:'Stocare',value:'12GB / 256GB'},{label:'AI',value:'Galaxy AI integrat'}],
+    note:'Cutie sigilată, fără accesoriile originale.', promo:true,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Galaxy+S24',
+    thumbs:['https://placehold.co/150x150/1a1a1a/4CF3E0?text=1','https://placehold.co/150x150/1a1a1a/4CF3E0?text=2','https://placehold.co/150x150/1a1a1a/4CF3E0?text=3','https://placehold.co/150x150/1a1a1a/4CF3E0?text=4']
+  },
+];
+
+/* ═══════════════════════════════════════════════════════
+   STATE & HELPERS
+   ═══════════════════════════════════════════════════════ */
+
+/* Safe access to storage — parse JSON or return default */
+function storageGet(key, fallback) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+  catch { return fallback; }
+}
+function storageSet(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+
+let favorites = storageGet('depozit_favorites', {});   // {code: true/false}
+let views     = storageGet('depozit_views', {});       // {code: number}
+
+function toggleFav(code) {
+  if (favorites[code]) delete favorites[code];
+  else favorites[code] = true;
+  storageSet('depozit_favorites', favorites);
+  refreshAllHearts();
+}
+function isFav(code) { return !!favorites[code]; }
+
+function recordView(code) {
+  views[code] = (views[code] || 0) + 1;
+  storageSet('depozit_views', views);
+}
+function getViews(code) { return views[code] || 0; }
+function getFavCount(code) { return isFav(code) ? 1 : 0; }
+
+/* Format price to RON */
+function fmtPrice(n) { return n.toLocaleString('ro-RO') + ' LEI'; }
+
+/* Find product by code */
+function findProduct(code) { return products.find(p => p.code === code); }
+
+/* Find product category & subcategory info */
+function getProductPath(code) {
+  const p = findProduct(code);
+  if (!p) return null;
+  return { product: p, category: p.category, subcategory: p.subcategory };
+}
+
+/* Toast notification */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+/* ═══════════════════════════════════════════════════════
+   CART STATE & FUNCTIONS
+   ═══════════════════════════════════════════════════════ */
+
+function getCart() { return storageGet('depozit_cart', []); }
+function setCart(val) { storageSet('depozit_cart', val); updateCartBadge(); }
+
+/* ═══════════════════════════════════════════════════════
+   CART — single source of truth
+   ═══════════════════════════════════════════════════════ */
+
+function getCart() { return storageGet('depozit_cart', []); }
+function setCart(val) { storageSet('depozit_cart', val); updateCartBadge(); }
+
+function addToCart(code) {
+  const cart = getCart();
+  const existing = cart.find(i => i.code === code);
+  if (existing) existing.qty++;
+  else cart.push({ code, qty: 1 });
+  setCart(cart);
+  bounceCartBadge();
+  showToast('Adaugat in cos ✓');
+}
+
+function bounceCartBadge() {
+  const badge = document.querySelector('.cart-badge');
+  if (!badge) return;
+  badge.style.transform = 'scale(1.4)';
+  badge.style.transition = 'transform .2s';
+  setTimeout(() => { badge.style.transform = 'scale(1)'; }, 200);
+}
+
+function removeFromCart(code) {
+  setCart(getCart().filter(i => i.code !== code));
+  renderCartPage();
+}
+
+function changeQty(code, delta) {
+  const cart = getCart();
+  const item = cart.find(i => i.code === code);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { setCart(cart.filter(i => i.code !== code)); return; }
+  setCart(cart);
+  renderCartPage();
+}
+
+function getCartTotal() {
+  return getCart().reduce((sum, item) => {
+    const p = findProduct(item.code);
+    return sum + (p ? p.price * item.qty : 0);
+  }, 0);
+}
+
+function getCartCount() {
+  return getCart().reduce((s, i) => s + i.qty, 0);
+}
+
+function clearCart() {
+  setCart([]);
+  renderCartPage();
+}
+
+function updateCartBadge() {
+  const badge = document.querySelector('.cart-badge');
+  if (badge) badge.textContent = getCartCount();
+}
+
+function renderCartPage() {
+  const page = document.getElementById('cartPage');
+  if (!page) return;
+  const cart = getCart();
+  if (!cart.length) {
+    page.innerHTML = `<div class="cart-page active"><div class="container">
+      <button class="pd-back" onclick="goHome()">← Înapoi</button>
+      <h1 style="font-size:1.5rem;margin:16px 0">🛒 Coș de cumpărături</h1>
+      <p class="cart-empty" style="padding:40px">Cosul este gol</p>
+    </div></div>`;
+    return;
+  }
+  let itemsHtml = '';
+  cart.forEach(item => {
+    const p = findProduct(item.code);
+    if (!p) return;
+    itemsHtml += `<div class="cart-item">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-price">${fmtPrice(p.price)} × ${item.qty} = ${fmtPrice(p.price * item.qty)}</div>
+      </div>
+      <div class="cart-item-qty">
+        <button onclick="changeQty('${p.code}',-1)">−</button>
+        <span class="cart-item-qty-val">${item.qty}</span>
+        <button onclick="changeQty('${p.code}',1)">+</button>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart('${p.code}')" title="Șterge">✕</button>
+    </div>`;
+  });
+  page.innerHTML = `<div class="cart-page active"><div class="container">
+    <button class="pd-back" onclick="goHome()">← Înapoi</button>
+    <h1 style="font-size:1.5rem;margin:16px 0">🛒 Coș de cumpărături</h1>
+    <div class="cart-items">${itemsHtml}</div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: ${fmtPrice(getCartTotal())}</div>
+      <button class="btn btn-admin-cyan" onclick="clearCart()">Curăță coșul</button>
+      <button class="btn btn-admin-magenta" onclick="openPay()">Plată cu cardul</button>
+    </div>
+  </div></div>`;
+}
+
+function openCartPage() {
+  document.getElementById('productPage').classList.remove('active');
+  document.getElementById('contactPage').classList.remove('active');
+  document.getElementById('cartPage').classList.add('active');
+  document.getElementById('shop').style.display = 'none';
+  document.getElementById('categories').style.display = 'none';
+  document.getElementById('hero').style.display = 'none';
+  document.querySelector('.wheel-section').style.display = 'none';
+  document.querySelector('footer').style.display = 'none';
+  renderCartPage();
+  window.scrollTo(0, 0);
+}
+
+function openCart() {
+  document.getElementById('dropdown').classList.remove('open');
+  location.hash = 'cos';
+  openCartPage();
+}
+
+function closeCart() {
+  goHome();
+}
+
+function openPay() {
+  const total = getCartTotal();
+  if (!total) { showToast('Cosul este gol'); return; }
+  const cart = getCart();
+  const items = cart.map(i => { const p = findProduct(i.code); return p ? `${p.name} × ${i.qty} = ${fmtPrice(p.price * i.qty)}` : ''; }).filter(Boolean).join('\n');
+  window.location.href = `mailto:returnisboyshop@gmail.com?subject=Comanda${encodeURIComponent(' - Total: ' + total + ' LEI')}&body=${encodeURIComponent('Comanda:\n\n' + items + '\n\nTotal: ' + total + ' LEI')}`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CATEGORY WHEEL
+   ═══════════════════════════════════════════════════════ */
+
+let wheelRotation = 0;
+let selectedCatIndex = -1;
+let selectedSubIndex = -1;
+
+function buildWheel() {
+  const svg = document.getElementById('wheelSvg');
+  const n = categories.length;
+  const anglePerSlice = 360 / n;
+  const cx = 200, cy = 200, rInner = 50, rOuter = 160;
+  let html = '';
+
+  // Draw divider lines from center outward
+  for (let i = 0; i < n; i++) {
+    const angle = i * anglePerSlice - 90;
+    const rad = angle * Math.PI / 180;
+    const x1 = cx + rInner * Math.cos(rad), y1 = cy + rInner * Math.sin(rad);
+    const x2 = cx + rOuter * Math.cos(rad), y2 = cy + rOuter * Math.sin(rad);
+    html += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#2E3033" stroke-width="1.5"/>`;
+  }
+
+  categories.forEach((cat, i) => {
+    const startAngle = i * anglePerSlice;
+    const endAngle = (i + 1) * anglePerSlice;
+    const midRad = ((startAngle + endAngle) / 2 - 90) * Math.PI / 180;
+    const textR = (rInner + rOuter) / 2;
+    const tx = cx + textR * Math.cos(midRad);
+    const ty = cy + textR * Math.sin(midRad);
+
+    // Very subtle slice outline (no fill)
+    const startRad = (startAngle - 90) * Math.PI / 180;
+    const endRad = (endAngle - 90) * Math.PI / 180;
+    const x1 = cx + rInner * Math.cos(startRad), y1 = cy + rInner * Math.sin(startRad);
+    const x2 = cx + rOuter * Math.cos(startRad), y2 = cy + rOuter * Math.sin(startRad);
+    const x3 = cx + rOuter * Math.cos(endRad),   y3 = cy + rOuter * Math.sin(endRad);
+    const x4 = cx + rInner * Math.cos(endRad),   y4 = cy + rInner * Math.sin(endRad);
+    const arcPath = `A${rOuter},${rOuter} 0 0 1 ${x3},${y3}`;
+    const innerArc = `A${rInner},${rInner} 0 0 0 ${x4},${y4}`;
+    const path = `M${x1},${y1} L${x2},${y2} ${arcPath} L${x4},${y4} ${innerArc} Z`;
+
+    html += `
+      <g class="slice" data-index="${i}" onclick="onSliceClick(${i})">
+        <path d="${path}" fill="transparent" stroke="#2E3033" stroke-width="0.8" opacity="0.6"/>
+        <text x="${tx}" y="${ty}" class="wheel-label" transform="rotate(${(midRad + Math.PI/2) * 180 / Math.PI} ${tx} ${ty})">${cat.name}</text>
+      </g>`;
+  });
+
+  svg.innerHTML = html;
+}
+
+function onSliceClick(idx) {
+  if (selectedCatIndex === idx) { resetSelection(); return; }
+  selectedCatIndex = idx;
+  selectedSubIndex = -1;
+  const n = categories.length;
+  const sliceAngle = 360 / n;
+  // Rotate so center of slice idx is at top: rotation = -(idx + 0.5) * sliceAngle
+  const targetRotation = -(idx + 0.5) * sliceAngle;
+  const currentMod = ((wheelRotation % 360) + 360) % 360;
+  const targetMod = ((targetRotation % 360) + 360) % 360;
+  let delta = targetMod - currentMod;
+  if (delta > 180) delta -= 360;
+  if (delta < -180) delta += 360;
+  wheelRotation += delta;
+  const svg = document.getElementById('wheelSvg');
+  svg.style.transform = `rotate(${wheelRotation}deg)`;
+  svg.style.transformOrigin = '50% 50%';
+  // Highlight selected slice
+  document.querySelectorAll('.slice').forEach((g, i) => {
+    const path = g.querySelector('path');
+    if (i === idx) {
+      path.setAttribute('fill', 'rgba(76,243,224,0.12)');
+      path.setAttribute('stroke', '#4CF3E0');
+      path.setAttribute('stroke-width', '1.5');
+    } else {
+      path.setAttribute('fill', 'transparent');
+      path.setAttribute('stroke', '#2E3033');
+      path.setAttribute('stroke-width', '0.8');
+    }
+  });
+  showSubring(idx);
+  updateBreadcrumb();
+}
+
+function showSubring(catIdx) {
+  const svg = document.getElementById('subringSvg');
+  const cat = categories[catIdx];
+  const n = cat.subs.length;
+  const rInner = 165, rOuter = 195;
+  const cx = 200, cy = 200;
+  const sliceAngle = 360 / n;
+  let html = '';
+
+  cat.subs.forEach((sub, i) => {
+    const startAngle = i * sliceAngle;
+    const endAngle = (i + 1) * sliceAngle;
+    const startRad = (startAngle - 90) * Math.PI / 180;
+    const endRad = (endAngle - 90) * Math.PI / 180;
+    const midRad = ((startAngle + endAngle) / 2 - 90) * Math.PI / 180;
+
+    const x1 = cx + rInner * Math.cos(startRad), y1 = cy + rInner * Math.sin(startRad);
+    const x2 = cx + rOuter * Math.cos(startRad), y2 = cy + rOuter * Math.sin(startRad);
+    const x3 = cx + rOuter * Math.cos(endRad),   y3 = cy + rOuter * Math.sin(endRad);
+    const x4 = cx + rInner * Math.cos(endRad),   y4 = cy + rInner * Math.sin(endRad);
+
+    const path = `M${x1},${y1} L${x2},${y2} A${rOuter},${rOuter} 0 0 1 ${x3},${y3} L${x4},${y4} A${rInner},${rInner} 0 0 0 ${x1},${y1} Z`;
+
+    // textPath for curved text along the arc
+    const textPathId = `subpath_${catIdx}_${i}`;
+    html += `
+      <g class="sub-slice" onclick="onSubClick(${catIdx},${i})">
+        <defs>
+          <path id="${textPathId}" d="M${x2},${y2} A${rOuter},${rOuter} 0 0 1 ${x3},${y3}" fill="none"/>
+        </defs>
+        <path d="${path}" fill="transparent" stroke="#2E3033" stroke-width="0.8" opacity="0.5"/>
+        <text class="sub-text" style="opacity:0;transition:opacity .3s">
+          <textPath href="#${textPathId}" startOffset="50%" text-anchor="middle">${sub}</textPath>
+        </text>
+      </g>`;
+  });
+
+  svg.innerHTML = html;
+  svg.style.transform = `rotate(${wheelRotation}deg)`;
+  svg.style.transformOrigin = '50% 50%';
+  svg.classList.add('visible');
+
+  // Fade in sequentially
+  const slices = svg.querySelectorAll('.sub-slice');
+  slices.forEach((s, i) => {
+    s.style.opacity = '0';
+    setTimeout(() => {
+      s.style.opacity = '1';
+      const txt = s.querySelector('text');
+      if (txt) txt.style.opacity = '1';
+    }, i * 80);
+  });
+}
+
+function onSubClick(catIdx, subIdx) {
+  selectedCatIndex = catIdx;
+  selectedSubIndex = subIdx;
+  document.getElementById('subringSvg').style.display = 'none';
+  updateBreadcrumb();
+  renderProductsGrid();
+  // Scroll to products
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+function updateBreadcrumb() {
+  const bar = document.getElementById('breadcrumb');
+  let html = '<a href="#" onclick="resetSelection();return false">Toate categoriile</a>';
+  if (selectedCatIndex >= 0) {
+    html += '<span class="sep">›</span>';
+    html += `<span>${categories[selectedCatIndex].name}</span>`;
+  }
+  if (selectedSubIndex >= 0) {
+    html += '<span class="sep">›</span>';
+    html += `<span>${categories[selectedCatIndex].subs[selectedSubIndex]}</span>`;
+  }
+  html += '<button class="reset-btn" onclick="resetSelection()">Resetează</button>';
+  bar.innerHTML = html;
+}
+
+function resetSelection() {
+  selectedCatIndex = -1;
+  selectedSubIndex = -1;
+  wheelRotation = 0;
+  document.getElementById('wheelSvg').style.transform = 'rotate(0deg)';
+  document.getElementById('wheelSvg').style.transformOrigin = '50% 50%';
+  // Clear slice highlights
+  document.querySelectorAll('.slice path').forEach(p => {
+    p.setAttribute('fill', 'transparent');
+    p.setAttribute('stroke', '#2E3033');
+    p.setAttribute('stroke-width', '0.8');
+  });
+  document.getElementById('subringSvg').classList.remove('visible');
+  setTimeout(() => { document.getElementById('subringSvg').style.display = ''; }, 500);
+  updateBreadcrumb();
+  renderProductsGrid();
+}
+
+/* ═══════════════════════════════════════════════════════
+   PRODUCT CARDS & GRID
+   ═══════════════════════════════════════════════════════ */
+
+function filteredProducts() {
+  let list = products;
+  if (selectedCatIndex >= 0) {
+    list = list.filter(p => p.category === categories[selectedCatIndex].name);
+    if (selectedSubIndex >= 0) {
+      list = list.filter(p => p.subcategory === categories[selectedCatIndex].subs[selectedSubIndex]);
+    }
+  }
+  return list;
+}
+
+function renderProductsGrid() {
+  const grid = document.getElementById('productsGrid');
+  const list = filteredProducts();
+  grid.innerHTML = '';
+
+  list.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = () => openProduct(p.code);
+    card.innerHTML = `
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <button class="fav-btn ${isFav(p.code)?'active':''}" onclick="event.stopPropagation();toggleHeart(this,'${p.code}')" aria-label="Favorite">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-body">
+        <div class="product-code">${p.code}</div>
+        <div class="product-condition">${p.condition}</div>
+        <div class="product-title">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-meta">
+          <div class="counters">
+            <span class="view-count">${getViews(p.code)} vizualizări</span>
+            <span class="fav-count">${getFavCount(p.code)} favorite</span>
+          </div>
+        </div>
+        <div class="product-bottom">
+          <div>
+            <div class="product-price">${fmtPrice(p.price)}</div>
+            <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.code}')">Adaugă în coș</button>
+          </div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function toggleHeart(btn, code) {
+  toggleFav(code);
+  btn.classList.toggle('active');
+  btn.classList.remove('pop');
+  void btn.offsetWidth;
+  btn.classList.add('pop');
+}
+
+function refreshAllHearts() {
+  document.querySelectorAll('.fav-btn').forEach(btn => {
+    // Refresh by re-rendering is cleaner, but for performance just toggle classes
+  });
+  renderProductsGrid();
+}
+
+/* ═══════════════════════════════════════════════════════
+   HASH ROUTING — PRODUCT PAGE
+   ═══════════════════════════════════════════════════════ */
+
+function openProduct(code) {
+  recordView(code);
+  location.hash = 'produs/' + code;
+}
+
+function handleHash() {
+  const hash = location.hash.replace('#', '');
+  if (hash === 'admin') {
+    openAdmin();
+    location.hash = '';
+  } else if (hash === 'cos') {
+    openCartPage();
+  } else if (hash === 'contact') {
+    openContactPage();
+  } else if (hash.startsWith('produs/')) {
+    const code = hash.replace('produs/', '');
+    renderProductPage(code);
+  } else if (!hash) {
+    closeAdmin();
+    document.getElementById('productPage').classList.remove('active');
+    document.getElementById('shop').style.display = '';
+    document.getElementById('categories').style.display = '';
+    document.getElementById('hero').style.display = '';
+    document.querySelector('.wheel-section').style.display = '';
+    document.querySelector('footer').style.display = '';
+    buildWheel();
+    renderProductsGrid();
+  }
+}
+
+function openContactPage() {
+  document.getElementById('productPage').classList.remove('active');
+  document.getElementById('contactPage').classList.add('active');
+  document.getElementById('cartPage').classList.remove('active');
+  document.getElementById('shop').style.display = 'none';
+  document.getElementById('categories').style.display = 'none';
+  document.getElementById('hero').style.display = 'none';
+  document.querySelector('.wheel-section').style.display = 'none';
+  document.querySelector('footer').style.display = 'none';
+  document.getElementById('subringSvg').style.display = 'none';
+  document.getElementById('subringSvg').classList.remove('visible');
+  renderContactPage();
+  window.scrollTo(0, 0);
+}
+
+function renderProductPage(code) {
+  const p = findProduct(code);
+  if (!p) return;
+
+  recordView(code); // also increment via hash (single increment on open)
+  const fav = isFav(code);
+  const v = getViews(code);
+  const fc = getFavCount(code);
+
+  // Similar products: same category, different code, max 4
+  const similar = products.filter(x => x.category === p.category && x.code !== code).slice(0, 4);
+
+  // Specs HTML
+  const specsHtml = p.specs.map(s => `
+    <div class="spec-row">
+      <span class="bullet">●</span>
+      <strong>${s.label}:</strong>
+      <span>${s.value}</span>
+    </div>`).join('');
+
+  // Note HTML
+  const noteHtml = p.note ? `<div class="pd-note">${p.note}</div>` : '';
+
+  // Promo badge
+  const promoLabel = p.promo ? ' ★ PROMOVARE' : '';
+
+  // Thumbnails
+  const thumbsHtml = p.thumbs.map((t, i) =>
+    `<img src="${t}" data-index="${i}" class="${i===0?'active':''}" onclick="swapThumb(this,event)">`
+  ).join('');
+
+  const page = document.getElementById('productPage');
+  page.innerHTML = `
+    <div class="container">
+      <div class="pd-breadcrumb">
+        <a href="#" onclick="goHome();return false">Magazin</a>
+        <span>›</span>
+        <a href="#" onclick="filterFromProduct('${p.category}');return false">${p.category}</a>
+        <span>›</span>
+        <span>${p.subcategory}</span>
+        <span>›</span>
+        <span>${p.name}</span>
+      </div>
+      <button class="pd-back" onclick="goHome()">← Înapoi la magazin</button>
+      <div class="pd-layout">
+        <div class="pd-gallery">
+          <img class="main-img" id="mainImg" src="${p.img}" alt="${p.name}">
+          <div class="pd-thumbs" id="thumbs">${thumbsHtml}</div>
+        </div>
+        <div class="pd-info">
+          <div class="pd-code">${p.code}</div>
+          <div class="pd-condition">${p.condition}</div>
+          <div class="pd-fav">
+            <button class="fav-btn ${fav?'active':''}" id="pdFav" onclick="togglePdFav()" aria-label="Favorite">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <span style="font-family:var(--font-mono);font-size:.75rem;color:var(--muted)">Adaugă în favorite</span>
+          </div>
+          <div class="pd-price">${fmtPrice(p.price)}${promoLabel}</div>
+          <div class="pd-counters">
+            <span id="pdViews">${v} vizualizări</span>
+            <span id="pdFavCount">${fc} favorite</span>
+          </div>
+          <div class="pd-actions">
+            <a class="btn btn-primary" href="mailto:returnisboyshop@gmail.com?subject=${encodeURIComponent('Comandă: ' + p.name + ' (' + p.code + ')')}">Comandă pe email</a>
+            <button class="btn-add-cart" onclick="addToCart('${p.code}')">Adaugă în coș</button>
+            <a class="btn btn-outline" href="mailto:returnisboyshop@gmail.com?subject=${encodeURIComponent('Întrebare despre: ' + p.name + ' (' + p.code + ')')}">Întreabă despre produs</a>
+          </div>
+          <div class="pd-desc">${p.desc}</div>
+          <div class="pd-specs">
+            <h3>Specificații</h3>
+            ${specsHtml}
+          </div>
+          ${noteHtml}
+        </div>
+      </div>
+      ${similar.length ? `
+        <div class="pd-similar">
+          <h3>Produse similare</h3>
+          <div class="similar-grid">
+            ${similar.map(s => `
+              <div class="sim-card" onclick="openProduct('${s.code}')">
+                <div class="sim-code">${s.code}</div>
+                <h4>${s.name}</h4>
+                <div class="sim-price">${fmtPrice(s.price)}</div>
+              </div>`).join('')}
+          </div>
+        </div>` : ''}
+    </div>`;
+
+  page.classList.add('active');
+  document.getElementById('shop').style.display = 'none';
+  document.getElementById('categories').style.display = 'none';
+  document.getElementById('hero').style.display = 'none';
+  document.querySelector('.wheel-section').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+
+function togglePdFav() {
+  const code = location.hash.replace('#produs/', '');
+  toggleFav(code);
+  const p = findProduct(code);
+  const btn = document.getElementById('pdFav');
+  const isNowFav = isFav(code);
+  btn.classList.toggle('active', isNowFav);
+  btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop');
+  document.getElementById('pdFavCount').textContent = getFavCount(code) + ' favorite';
+}
+
+function swapThumb(el, event) {
+  event.stopPropagation();
+  document.querySelectorAll('.pd-thumbs img').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('mainImg').src = el.src;
+}
+
+function filterFromProduct(catName) {
+  const idx = categories.findIndex(c => c.name === catName);
+  if (idx >= 0) {
+    selectedCatIndex = idx;
+    selectedSubIndex = -1;
+    const n = categories.length;
+    const sliceAngle = 360 / n;
+    wheelRotation = -(idx + 0.5) * sliceAngle;
+    document.getElementById('wheelSvg').style.transform = `rotate(${wheelRotation}deg)`;
+    document.getElementById('wheelSvg').style.transformOrigin = '50% 50%';
+    showSubring(idx);
+    updateBreadcrumb();
+    renderProductsGrid();
+    goHome();
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAVIGATION & MENUS
+   ═══════════════════════════════════════════════════════ */
+
+function goHome() {
+  closeAdmin();
+  location.hash = '';
+  document.getElementById('productPage').classList.remove('active');
+  document.getElementById('contactPage').classList.remove('active');
+  document.getElementById('cartPage').classList.remove('active');
+  document.getElementById('shop').style.display = '';
+  document.getElementById('categories').style.display = '';
+  document.getElementById('hero').style.display = '';
+  document.querySelector('.wheel-section').style.display = '';
+  document.getElementById('subringSvg').style.display = '';
+  document.getElementById('subringSvg').classList.remove('visible');
+  setTimeout(() => { document.getElementById('subringSvg').innerHTML = ''; }, 600);
+  window.scrollTo(0, 0);
+}
+
+/* ═══ CONTACT PAGE ═══ */
+let contactSent = false;
+
+function openContact() {
+  location.hash = 'contact';
+  document.getElementById('dropdown').classList.remove('open');
+}
+
+function renderContactPage() {
+  if (contactSent) {
+    document.getElementById('contactPage').innerHTML = `
+      <div class="contact-page">
+        <div class="contact-sent" style="display:block">
+          <h2>✅ Mesaj trimis!</h2>
+          <p>Vă mulțumim pentru contact. Vă răspundem pe adresa de email introdusă.</p>
+          <p style="margin-top:16px"><a href="#" onclick="resetContact();return false" style="color:var(--cyan);font-family:var(--font-mono);font-size:.8rem">Trimiteți un alt mesaj</a></p>
+        </div>
+      </div>`;
+    return;
+  }
+  document.getElementById('contactPage').innerHTML = `
+    <div class="contact-page">
+      <h1>📬 Întrebări</h1>
+      <p class="subtitle">Aveți o problemă sau o cerere? Scrieți-ne!</p>
+      <form class="contact-form" onsubmit="sendContact(event)">
+        <div class="af">
+          <label>Emailul dumneavoastră</label>
+          <input type="email" id="cEmail" required placeholder="ex: persona@example.com">
+        </div>
+        <div class="af">
+          <label>Subiect</label>
+          <select id="cSubject">
+            <option value="Problema cu un produs">Problema cu un produs</option>
+            <option value="Cerere informații">Cerere informații</option>
+            <option value="Reclamație">Reclamație</option>
+            <option value="Altele">Altele</option>
+          </select>
+        </div>
+        <div class="af">
+          <label>Mesajul</label>
+          <textarea id="cMessage" required placeholder="Descrieți problema sau cererea dumneavoastră..."></textarea>
+        </div>
+        <p class="note">💡 Pentru PDF sau fotografii, atașați-le direct în emailul pe care îl deschideți după trimitere.</p>
+        <button type="submit" class="btn-submit">Trimite Emailul</button>
+      </form>
+    </div>`;
+}
+
+function sendContact(e) {
+  e.preventDefault();
+  const email = document.getElementById('cEmail').value.trim();
+  const subject = document.getElementById('cSubject').value;
+  const message = document.getElementById('cMessage').value.trim();
+  const body = `De la: ${email}\n\n${message}`;
+  window.location.href = `mailto:returnisboyshop@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  contactSent = true;
+  renderContactPage();
+}
+
+function resetContact() {
+  contactSent = false;
+  renderContactPage();
+}
+
+function scrollToHero() {
+  document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggleMenu() {
+  const dd = document.getElementById('dropdown');
+  dd.classList.toggle('open');
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', e => {
+  const dd = document.getElementById('dropdown');
+  const wrap = document.querySelector('.menu-wrap');
+  if (!wrap.contains(e.target)) dd.classList.remove('open');
+});
+
+// Show favorites filter from menu
+function showFavorites() {
+  selectedCatIndex = -1; selectedSubIndex = -1;
+  resetSelection();
+  // Filter grid to only favorites
+  const grid = document.getElementById('productsGrid');
+  const favorited = products.filter(p => isFav(p.code));
+  if (!favorited.length) { showToast('Nu ai favorite'); return; }
+  grid.innerHTML = '';
+  favorited.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = () => openProduct(p.code);
+    card.innerHTML = `
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <button class="fav-btn active" onclick="event.stopPropagation()">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-body">
+        <div class="product-code">${p.code}</div>
+        <div class="product-condition">${p.condition}</div>
+        <div class="product-title">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-meta">
+          <div class="counters">
+            <span class="view-count">${getViews(p.code)} vizualizări</span>
+            <span class="fav-count">${getFavCount(p.code)} favorite</span>
+          </div>
+        </div>
+        <div class="product-bottom">
+          <div class="product-price">${fmtPrice(p.price)}</div>
+          <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.code}')">Adaugă în coș</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  // Update section label
+  document.querySelector('#shop .section-label').textContent = '★ Favorite';
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('dropdown').classList.remove('open');
+  showToast('Afavorit → filtru');
+}
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════ */
+
+window.addEventListener('hashchange', handleHash);
+
+function initApp() {
+  loadCustomProducts();
+  buildWheel();
+  renderProductsGrid();
+  updateCartBadge();
+  if (location.hash) handleHash();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+
+/* ═══════════════════════════════════════════════════════
+   ADMIN PANEL — edit products visually (overlay system)
+   ═══════════════════════════════════════════════════════ */
+
+let adminProducts = [];
+
+function loadCustomProducts() {
+  const custom = storageGet('depozit_custom_products', null);
+  if (custom && custom.length > 0) {
+    products.length = 0;
+    custom.forEach(p => products.push(p));
+  }
+}
+
+function saveProductsToStorage() {
+  storageSet('depozit_custom_products', products);
+  showToast('Produse salvate ✓');
+}
+
+function resetProducts() {
+  if (confirm('Resetează toate produsele la valorile implicite?')) {
+    localStorage.removeItem('depozit_custom_products');
+    location.reload();
+  }
+}
+
+/* ── Overlay open/close ── */
+function closeAdmin() {
+  document.getElementById('adminOverlay').classList.remove('open');
+}
+
+function closeAdminOverlay(e) {
+  if (e.target === document.getElementById('adminOverlay')) closeAdmin();
+}
+
+function renderAdminContainer() {
+  const totalProducts = adminProducts.length;
+  const totalValue = adminProducts.reduce((s, p) => s + (p.price || 0), 0);
+  document.getElementById('adminContainer').innerHTML =
+    `<div class="admin-summary">
+       <span>📦 ${totalProducts} produse</span>
+       <span>💰 Valoare totală: ${fmtPrice(totalValue)}</span>
+     </div>` +
+    `<div class="admin-toolbar">
+       <button class="btn btn-admin-cyan" onclick="adminAddProduct()">+ Adaugă Produs</button>
+       <button class="btn btn-admin-cyan" onclick="adminSaveAll()">💾 Salvează Tot</button>
+       <button class="btn btn-admin-magenta" onclick="resetProducts()">↺ Reset la implicite</button>
+       <button class="btn btn-outline" onclick="closeAdmin()">← Închide</button>
+     </div>` +
+    (totalProducts
+      ? adminProducts.map((p, i) => renderAdminCard(p, i)).join('')
+      : '<div class="admin-empty"><p>Niciun produs încă. Apasă "+ Adaugă Produs" pentru a începe.</p></div>');
+}
+
+function renderAdminCard(p, i) {
+  const specs = (p.specs || []).map((s, si) => `
+    <div class="spec-row">
+      <input value="${escHtml(s.label)}" placeholder="Eticheta" oninput="adminUpdateSpec(${i},${si},'label',this.value)">
+      <input value="${escHtml(s.value)}" placeholder="Valoare" oninput="adminUpdateSpec(${i},${si},'value',this.value)">
+      <button onclick="adminRemoveSpec(${i},${si})" title="Șterge">×</button>
+    </div>`).join('');
+  const thumbs = (p.thumbs || []).map((t, ti) => `
+    <input value="${escHtml(t)}" placeholder="Thumbnail ${ti+1}" oninput="adminUpdateThumb(${i},${ti},this.value)">`).join('');
+  return `
+    <div class="admin-card" id="admin-card-${i}">
+      <div class="admin-card-header">
+        <span class="ac-code">${escHtml(p.code || 'NEW')}</span>
+        <span class="ac-name">${escHtml(p.name || 'Nou')}</span>
+        <button class="btn btn-admin-magenta" onclick="adminDeleteProduct(${i})" style="padding:4px 12px;font-size:.72rem">Șterge</button>
+      </div>
+      <div class="admin-card-body">
+        <div class="af full">
+          <label>Imagine principală</label>
+          <input type="text" value="${escHtml(p.img || '')}" placeholder="https://placehold.co/..." oninput="adminUpdateProp(${i},'img',this.value)">
+          <img class="img-preview" src="${escHtml(p.img || 'https://placehold.co/300x200/1a1a1a/4CF3E0?text=preview')}" onerror="this.style.display='none'">
+        </div>
+        <div class="af full">
+          <label>Thumbnails</label>
+          <div class="img-thumb-grid">${thumbs}</div>
+        </div>
+        <div class="af"><label>Cod</label><input value="${escHtml(p.code || '')}" oninput="adminUpdateProp(${i},'code',this.value)"></div>
+        <div class="af"><label>Denumire</label><input value="${escHtml(p.name || '')}" oninput="adminUpdateProp(${i},'name',this.value)"></div>
+        <div class="af">
+          <label>Categorie</label>
+          <select onchange="adminUpdateCat(${i},this.value)">
+            ${categories.map(c => `<option value="${c.name}" ${p.category===c.name?'selected':''}>${c.name}</option>`).join('')}
+          </select>
+        </div>
+        <div class="af">
+          <label>Subcategorie</label>
+          <select id="admin-sub-${i}" onchange="adminUpdateProp(${i},'subcategory',this.value)">
+            ${(categories.find(c=>c.name===p.category)||categories[0]).subs.map(s => `<option value="${s}" ${p.subcategory===s?'selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+        <div class="af"><label>Stare</label><input value="${escHtml(p.condition || '')}" oninput="adminUpdateProp(${i},'condition',this.value)"></div>
+        <div class="af"><label>Preț (LEI)</label><input type="number" value="${p.price || 0}" oninput="adminUpdateProp(${i},'price',this.value)"></div>
+        <div class="af full"><label>Descriere</label><textarea oninput="adminUpdateProp(${i},'desc',this.value)">${escHtml(p.desc || '')}</textarea></div>
+        <div class="af full"><label>Notă importantă</label><textarea oninput="adminUpdateProp(${i},'note',this.value)">${escHtml(p.note || '')}</textarea></div>
+        <div class="af full">
+          <label>Specificații</label>
+          <div class="spec-editor" id="specs-${i}">${specs || ''}</div>
+          <button class="add-spec" onclick="adminAddSpec(${i})">+ Adaugă specificație</button>
+        </div>
+        <div class="af">
+          <label style="display:flex;align-items:center;cursor:pointer"><input type="checkbox" ${p.promo?'checked':''} onchange="adminUpdateProp(${i},'promo',this.checked)"> Promovare</label>
+        </div>
+      </div>
+    </div>`;
+}
+
+function escHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function adminUpdateProp(i, key, val) {
+  if (key === 'price') adminProducts[i].price = Number(val) || 0;
+  else if (key === 'promo') adminProducts[i].promo = !!val;
+  else adminProducts[i][key] = val;
+}
+
+function adminUpdateThumb(i, ti, val) {
+  if (!adminProducts[i].thumbs) adminProducts[i].thumbs = ['','','',''];
+  adminProducts[i].thumbs[ti] = val;
+}
+
+function adminUpdateSpec(i, si, field, val) {
+  if (!adminProducts[i].specs) adminProducts[i].specs = [];
+  adminProducts[i].specs[si][field] = val;
+}
+
+function adminAddSpec(i) {
+  if (!adminProducts[i].specs) adminProducts[i].specs = [];
+  adminProducts[i].specs.push({label:'', value:''});
+  renderAdminContainer();
+}
+
+function adminRemoveSpec(i, si) {
+  if (adminProducts[i].specs) adminProducts[i].specs.splice(si, 1);
+  renderAdminContainer();
+}
+
+function adminUpdateCat(i, catName) {
+  adminProducts[i].category = catName;
+  const subSelect = document.getElementById('admin-sub-' + i);
+  const cat = categories.find(c => c.name === catName);
+  if (cat && subSelect) {
+    const currentSub = adminProducts[i].subcategory;
+    subSelect.innerHTML = cat.subs.map(s => `<option value="${s}" ${currentSub===s?'selected':''}>${s}</option>`).join('');
+  }
+}
+
+function adminAddProduct() {
+  const nextNum = adminProducts.length + 1;
+  const code = 'DP-' + String(nextNum).padStart(3, '0');
+  adminProducts.push({
+    code, name:'Produs nou', category:categories[0].name, subcategory:categories[0].subs[0],
+    condition:'Excelent', price:0, desc:'', specs:[{label:'',value:''}], note:null, promo:false,
+    img:'https://placehold.co/600x450/1a1a1a/4CF3E0?text=Nou',
+    thumbs:['','','','']
+  });
+  renderAdminContainer();
+  showToast('Produs adăugat ✓');
+}
+
+function adminDeleteProduct(i) {
+  if (confirm('Șterge acest produs?')) {
+    adminProducts.splice(i, 1);
+    renderAdminContainer();
+    showToast('Produs șters ✓');
+  }
+}
+
+function adminSaveAll() {
+  products.length = 0;
+  adminProducts.forEach(p => products.push(p));
+  saveProductsToStorage();
+  renderProductsGrid();
+  closeAdmin();
+}
+
+/* ── Admin password ── */
+const ADMIN_PASSWORD = 'returnis2026';
+
+function openAdmin() {
+  const pw = prompt('🔒 Acces Restricționat — Introduceți parola:');
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('adminOverlay').classList.add('open');
+    renderAdminContainer();
+  } else if (pw !== null) {
+    alert('Parolă incorectă. 🔒');
+  }
+}
+
+/* ── Keyboard shortcuts ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeAdmin();
+  if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); openAdmin(); }
+});
+
+
+</script>
+</body>
+</html>
