@@ -6,6 +6,7 @@
 <title>ReturnisShop — Hardware & Gadgets Verificate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
 /* ═══════════════════════════════════════════
    DEPÔZIT — Dark Cyberpunk Theme
@@ -68,13 +69,20 @@ header .container{display:flex;align-items:center;justify-content:space-between;
 .logo-text{font-size:1.3rem;font-weight:700;letter-spacing:.08em;color:var(--text)}
 .header-actions{display:flex;align-items:center;gap:12px}
 .menu-wrap{position:relative}
-.menu-btn,.cart-btn{
+.menu-btn{
   display:flex;align-items:center;gap:8px;padding:10px 18px;
   border:1px solid var(--line);background:var(--card);color:var(--text);
   font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;
   transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
 }
-.menu-btn:hover,.cart-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.menu-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.cart-btn{
+  display:flex;align-items:center;gap:8px;padding:10px 18px;
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  font-family:var(--font-mono);font-size:.8rem;letter-spacing:.05em;
+  transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
+.cart-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .cart-badge{
   background:var(--magenta);color:#fff;font-size:.6rem;font-weight:600;
   width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -97,13 +105,6 @@ header .container{display:flex;align-items:center;justify-content:space-between;
 .hero{padding:80px 0 40px;text-align:center;position:relative}
 .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
 .hero h1 span{color:var(--cyan)}
-.hero p{color:var(--muted);font-size:1.05rem;max-width:500px;margin:0 auto 20px}
-.scroll-hint{
-  font-family:var(--font-mono);font-size:.75rem;color:var(--cyan);
-  opacity:.6;animation:float 2.5s ease-in-out infinite;display:inline-block;
-}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-
 /* ═══ WHEEL SECTION ═══ */
 .wheel-section{padding:40px 0 20px;text-align:center}
 .wheel-wrapper{position:relative;width:480px;height:480px;margin:0 auto}
@@ -181,11 +182,13 @@ header .container{display:flex;align-items:center;justify-content:space-between;
 .product-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .counters{font-family:var(--font-mono);font-size:.65rem;color:var(--muted);display:flex;gap:12px}
 .product-price{font-family:var(--font-mono);font-size:1.3rem;font-weight:600;color:var(--cyan)}
-.promo-btn{
-  font-family:var(--font-mono);font-size:.65rem;padding:4px 12px;
-  border:1px solid var(--line);color:var(--muted);letter-spacing:.05em;transition:all .2s;
-}
 .product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.btn-add-cart{
+  font-family:var(--font-mono);font-size:.7rem;padding:5px 12px;
+  border:1px solid var(--cyan);background:transparent;color:var(--cyan);
+  letter-spacing:.04em;transition:all .2s;cursor:pointer;border-radius:4px;
+}
+.btn-add-cart:hover{background:rgba(76,243,224,.12)}
 
 /* ═══ PRODUCT PAGE ═══ */
 .product-page{display:none;padding:40px 0 60px}
@@ -287,6 +290,24 @@ footer a{color:var(--cyan)}
 .modal-box .btn{padding:8px 24px;font-size:.85rem;border-radius:6px;width:100%}
 .modal-box .btn-admin-cyan{background:var(--cyan);color:var(--bg);font-weight:600;border:none}
 .modal-box .btn-admin-cyan:hover{opacity:.85}
+
+/* ═══ CART PAGE ═══ */
+.cart-page{display:none;padding:40px 0 60px}
+.cart-page.active{display:block}
+.cart-page .cart-items{flex:1;overflow-y:auto;padding:8px 0;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.cart-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-item-price{font-family:var(--font-mono);font-size:.75rem;color:var(--cyan);margin-top:2px}
+.cart-item-qty{display:flex;align-items:center;gap:6px}
+.cart-item-qty button{width:26px;height:26px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:.9rem;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.cart-item-qty button:hover{border-color:var(--cyan);color:var(--cyan)}
+.cart-item-qty-val{font-family:var(--font-mono);font-size:.85rem;min-width:20px;text-align:center}
+.cart-item-remove{background:none;border:none;color:var(--magenta);cursor:pointer;font-size:.9rem;padding:4px 6px;transition:opacity .2s}
+.cart-item-remove:hover{opacity:.7}
+.cart-empty{text-align:center;padding:30px;color:var(--muted);font-family:var(--font-mono);font-size:.85rem}
+.cart-footer{padding:14px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.cart-total{font-family:var(--font-mono);font-size:1rem;font-weight:700;color:var(--cyan);text-align:center}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:700px){
@@ -390,9 +411,8 @@ footer a{color:var(--cyan)}
           <a href="#" onclick="scrollToHero();return false">Despre noi</a>
         </div>
       </div>
-      <button class="cart-btn" disabled title="Cosul este decorativ">
+      <button class="cart-btn" onclick="openCart()" title="Cos">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        <span>Cart</span>
         <span class="cart-badge">0</span>
       </button>
     </div>
@@ -403,8 +423,6 @@ footer a{color:var(--cyan)}
 <section class="hero" id="hero">
   <div class="container">
     <h1>ReturnisShop<span> — Hardware & Gadgets Verificate</span></h1>
-    <p>Hardware și gadget-uri second-hand verificate, cu prețuri corecte. Calitate garantată, direct de la specialiști.</p>
-    <span class="scroll-hint">↓ derulează pentru categorii</span>
   </div>
 </section>
 
@@ -439,11 +457,14 @@ footer a{color:var(--cyan)}
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="container">
-    <p>© 2026 ReturnisShop — Toate drepturile rezervate. &nbsp; Contact: <a href="mailto:depozit@email.ro">depozit@email.ro</a> &nbsp;|&nbsp; <a href="#" onclick="openAdmin();return false" style="color:var(--muted)">⚙ Admin 🔒</a></p>
+    <p>© 2026 ReturnisShop — Toate drepturile rezervate. &nbsp; Contact: <a href="mailto:returnisboyshop@gmail.com">returnisboyshop@gmail.com</a> &nbsp;|&nbsp; <a href="#" onclick="openAdmin();return false" style="color:var(--muted)">⚙ Admin 🔒</a></p>
   </div>
 </footer>
 
 <div class="toast" id="toast"></div>
+
+<!-- ═══ CART PAGE ═══ -->
+<div class="cart-page" id="cartPage"></div>
 
 <!-- ═══ ADMIN OVERLAY ═══ -->
 <div class="admin-overlay" id="adminOverlay" onclick="closeAdminOverlay(event)"></div>
@@ -706,6 +727,146 @@ function showToast(msg) {
 }
 
 /* ═══════════════════════════════════════════════════════
+   CART STATE & FUNCTIONS
+   ═══════════════════════════════════════════════════════ */
+
+function getCart() { return storageGet('depozit_cart', []); }
+function setCart(val) { storageSet('depozit_cart', val); updateCartBadge(); }
+
+/* ═══════════════════════════════════════════════════════
+   CART — single source of truth
+   ═══════════════════════════════════════════════════════ */
+
+function getCart() { return storageGet('depozit_cart', []); }
+function setCart(val) { storageSet('depozit_cart', val); updateCartBadge(); }
+
+function addToCart(code) {
+  const cart = getCart();
+  const existing = cart.find(i => i.code === code);
+  if (existing) existing.qty++;
+  else cart.push({ code, qty: 1 });
+  setCart(cart);
+  bounceCartBadge();
+  showToast('Adaugat in cos ✓');
+}
+
+function bounceCartBadge() {
+  const badge = document.querySelector('.cart-badge');
+  if (!badge) return;
+  badge.style.transform = 'scale(1.4)';
+  badge.style.transition = 'transform .2s';
+  setTimeout(() => { badge.style.transform = 'scale(1)'; }, 200);
+}
+
+function removeFromCart(code) {
+  setCart(getCart().filter(i => i.code !== code));
+  renderCartPage();
+}
+
+function changeQty(code, delta) {
+  const cart = getCart();
+  const item = cart.find(i => i.code === code);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) { setCart(cart.filter(i => i.code !== code)); return; }
+  setCart(cart);
+  renderCartPage();
+}
+
+function getCartTotal() {
+  return getCart().reduce((sum, item) => {
+    const p = findProduct(item.code);
+    return sum + (p ? p.price * item.qty : 0);
+  }, 0);
+}
+
+function getCartCount() {
+  return getCart().reduce((s, i) => s + i.qty, 0);
+}
+
+function clearCart() {
+  setCart([]);
+  renderCartPage();
+}
+
+function updateCartBadge() {
+  const badge = document.querySelector('.cart-badge');
+  if (badge) badge.textContent = getCartCount();
+}
+
+function renderCartPage() {
+  const page = document.getElementById('cartPage');
+  if (!page) return;
+  const cart = getCart();
+  if (!cart.length) {
+    page.innerHTML = `<div class="cart-page active"><div class="container">
+      <button class="pd-back" onclick="goHome()">← Înapoi</button>
+      <h1 style="font-size:1.5rem;margin:16px 0">🛒 Coș de cumpărături</h1>
+      <p class="cart-empty" style="padding:40px">Cosul este gol</p>
+    </div></div>`;
+    return;
+  }
+  let itemsHtml = '';
+  cart.forEach(item => {
+    const p = findProduct(item.code);
+    if (!p) return;
+    itemsHtml += `<div class="cart-item">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-price">${fmtPrice(p.price)} × ${item.qty} = ${fmtPrice(p.price * item.qty)}</div>
+      </div>
+      <div class="cart-item-qty">
+        <button onclick="changeQty('${p.code}',-1)">−</button>
+        <span class="cart-item-qty-val">${item.qty}</span>
+        <button onclick="changeQty('${p.code}',1)">+</button>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart('${p.code}')" title="Șterge">✕</button>
+    </div>`;
+  });
+  page.innerHTML = `<div class="cart-page active"><div class="container">
+    <button class="pd-back" onclick="goHome()">← Înapoi</button>
+    <h1 style="font-size:1.5rem;margin:16px 0">🛒 Coș de cumpărături</h1>
+    <div class="cart-items">${itemsHtml}</div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: ${fmtPrice(getCartTotal())}</div>
+      <button class="btn btn-admin-cyan" onclick="clearCart()">Curăță coșul</button>
+      <button class="btn btn-admin-magenta" onclick="openPay()">Plată cu cardul</button>
+    </div>
+  </div></div>`;
+}
+
+function openCartPage() {
+  document.getElementById('productPage').classList.remove('active');
+  document.getElementById('contactPage').classList.remove('active');
+  document.getElementById('cartPage').classList.add('active');
+  document.getElementById('shop').style.display = 'none';
+  document.getElementById('categories').style.display = 'none';
+  document.getElementById('hero').style.display = 'none';
+  document.querySelector('.wheel-section').style.display = 'none';
+  document.querySelector('footer').style.display = 'none';
+  renderCartPage();
+  window.scrollTo(0, 0);
+}
+
+function openCart() {
+  document.getElementById('dropdown').classList.remove('open');
+  location.hash = 'cos';
+  openCartPage();
+}
+
+function closeCart() {
+  goHome();
+}
+
+function openPay() {
+  const total = getCartTotal();
+  if (!total) { showToast('Cosul este gol'); return; }
+  const cart = getCart();
+  const items = cart.map(i => { const p = findProduct(i.code); return p ? `${p.name} × ${i.qty} = ${fmtPrice(p.price * i.qty)}` : ''; }).filter(Boolean).join('\n');
+  window.location.href = `mailto:returnisboyshop@gmail.com?subject=Comanda${encodeURIComponent(' - Total: ' + total + ' LEI')}&body=${encodeURIComponent('Comanda:\n\n' + items + '\n\nTotal: ' + total + ' LEI')}`;
+}
+
+/* ═══════════════════════════════════════════════════════
    CATEGORY WHEEL
    ═══════════════════════════════════════════════════════ */
 
@@ -759,37 +920,35 @@ function buildWheel() {
 }
 
 function onSliceClick(idx) {
-  if (selectedCatIndex === idx) {
-    resetSelection();
-    return;
-  }
+  if (selectedCatIndex === idx) { resetSelection(); return; }
   selectedCatIndex = idx;
   selectedSubIndex = -1;
   const n = categories.length;
   const sliceAngle = 360 / n;
-  // Rotate so that the clicked slice is at top (center of slice should be at 270° = top)
-  // Slice center angle: (idx + 0.5) * sliceAngle
-  const sliceCenter = (idx + 0.5) * sliceAngle;
-  // We want that angle to become 270 (top). So rotation = 270 - sliceCenter, but we need
-  // to account for existing rotation to make it smooth.
-  wheelRotation += (270 - sliceCenter) - (wheelRotation % 360) + (360 * Math.floor(Math.abs((270 - sliceCenter) - (wheelRotation % 360)) / 360)) * Math.sign((270 - sliceCenter) - (wheelRotation % 360));
-  // Simpler: just rotate by the delta
-  const target = -sliceCenter + 90; // top is at -90 in our coord, so we rotate so slice center goes to -90
-  // Actually let's compute properly: rotate the wheel so that the center of slice `idx` is at the top.
-  // In SVG with -90 offset, top position is -90°. Slice center is at ((idx+0.5)*sliceAngle - 90)°.
-  // We need: wheelRotation + slice_center_angle = -90 + 360k
-  // => wheelRotation = -90 - slice_center_angle + 360k = -90 - (idx+0.5)*sliceAngle + 360k
-  const targetRotation = -90 - (idx + 0.5) * sliceAngle;
-  // Find the nearest equivalent rotation (to avoid spinning the wrong way)
+  // Rotate so center of slice idx is at top: rotation = -(idx + 0.5) * sliceAngle
+  const targetRotation = -(idx + 0.5) * sliceAngle;
   const currentMod = ((wheelRotation % 360) + 360) % 360;
   const targetMod = ((targetRotation % 360) + 360) % 360;
   let delta = targetMod - currentMod;
   if (delta > 180) delta -= 360;
   if (delta < -180) delta += 360;
   wheelRotation += delta;
-  document.getElementById('wheelSvg').style.transform = `rotate(${wheelRotation}deg)`;
-  document.getElementById('wheelSvg').style.transformOrigin = '50% 50%';
-
+  const svg = document.getElementById('wheelSvg');
+  svg.style.transform = `rotate(${wheelRotation}deg)`;
+  svg.style.transformOrigin = '50% 50%';
+  // Highlight selected slice
+  document.querySelectorAll('.slice').forEach((g, i) => {
+    const path = g.querySelector('path');
+    if (i === idx) {
+      path.setAttribute('fill', 'rgba(76,243,224,0.12)');
+      path.setAttribute('stroke', '#4CF3E0');
+      path.setAttribute('stroke-width', '1.5');
+    } else {
+      path.setAttribute('fill', 'transparent');
+      path.setAttribute('stroke', '#2E3033');
+      path.setAttribute('stroke-width', '0.8');
+    }
+  });
   showSubring(idx);
   updateBreadcrumb();
 }
@@ -879,6 +1038,12 @@ function resetSelection() {
   wheelRotation = 0;
   document.getElementById('wheelSvg').style.transform = 'rotate(0deg)';
   document.getElementById('wheelSvg').style.transformOrigin = '50% 50%';
+  // Clear slice highlights
+  document.querySelectorAll('.slice path').forEach(p => {
+    p.setAttribute('fill', 'transparent');
+    p.setAttribute('stroke', '#2E3033');
+    p.setAttribute('stroke-width', '0.8');
+  });
   document.getElementById('subringSvg').classList.remove('visible');
   setTimeout(() => { document.getElementById('subringSvg').style.display = ''; }, 500);
   updateBreadcrumb();
@@ -930,8 +1095,8 @@ function renderProductsGrid() {
         <div class="product-bottom">
           <div>
             <div class="product-price">${fmtPrice(p.price)}</div>
+            <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.code}')">Adaugă în coș</button>
           </div>
-          <button class="promo-btn">Promovare</button>
         </div>
       </div>`;
     grid.appendChild(card);
@@ -967,6 +1132,8 @@ function handleHash() {
   if (hash === 'admin') {
     openAdmin();
     location.hash = '';
+  } else if (hash === 'cos') {
+    openCartPage();
   } else if (hash === 'contact') {
     openContactPage();
   } else if (hash.startsWith('produs/')) {
@@ -988,6 +1155,7 @@ function handleHash() {
 function openContactPage() {
   document.getElementById('productPage').classList.remove('active');
   document.getElementById('contactPage').classList.add('active');
+  document.getElementById('cartPage').classList.remove('active');
   document.getElementById('shop').style.display = 'none';
   document.getElementById('categories').style.display = 'none';
   document.getElementById('hero').style.display = 'none';
@@ -1063,8 +1231,9 @@ function renderProductPage(code) {
             <span id="pdFavCount">${fc} favorite</span>
           </div>
           <div class="pd-actions">
-            <a class="btn btn-primary" href="mailto:depozit@email.ro?subject=${encodeURIComponent('Comandă: ' + p.name + ' (' + p.code + ')')}">Comandă pe email</a>
-            <a class="btn btn-outline" href="mailto:depozit@email.ro?subject=${encodeURIComponent('Întrebare despre: ' + p.name + ' (' + p.code + ')')}">Întreabă despre produs</a>
+            <a class="btn btn-primary" href="mailto:returnisboyshop@gmail.com?subject=${encodeURIComponent('Comandă: ' + p.name + ' (' + p.code + ')')}">Comandă pe email</a>
+            <button class="btn-add-cart" onclick="addToCart('${p.code}')">Adaugă în coș</button>
+            <a class="btn btn-outline" href="mailto:returnisboyshop@gmail.com?subject=${encodeURIComponent('Întrebare despre: ' + p.name + ' (' + p.code + ')')}">Întreabă despre produs</a>
           </div>
           <div class="pd-desc">${p.desc}</div>
           <div class="pd-specs">
@@ -1121,7 +1290,7 @@ function filterFromProduct(catName) {
     selectedSubIndex = -1;
     const n = categories.length;
     const sliceAngle = 360 / n;
-    wheelRotation = -90 - (idx + 0.5) * sliceAngle;
+    wheelRotation = -(idx + 0.5) * sliceAngle;
     document.getElementById('wheelSvg').style.transform = `rotate(${wheelRotation}deg)`;
     document.getElementById('wheelSvg').style.transformOrigin = '50% 50%';
     showSubring(idx);
@@ -1140,6 +1309,7 @@ function goHome() {
   location.hash = '';
   document.getElementById('productPage').classList.remove('active');
   document.getElementById('contactPage').classList.remove('active');
+  document.getElementById('cartPage').classList.remove('active');
   document.getElementById('shop').style.display = '';
   document.getElementById('categories').style.display = '';
   document.getElementById('hero').style.display = '';
@@ -1204,7 +1374,7 @@ function sendContact(e) {
   const subject = document.getElementById('cSubject').value;
   const message = document.getElementById('cMessage').value.trim();
   const body = `De la: ${email}\n\n${message}`;
-  window.location.href = `mailto:depozit@email.ro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:returnisboyshop@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   contactSent = true;
   renderContactPage();
 }
@@ -1263,6 +1433,7 @@ function showFavorites() {
         </div>
         <div class="product-bottom">
           <div class="product-price">${fmtPrice(p.price)}</div>
+          <button class="btn-add-cart" onclick="event.stopPropagation();addToCart('${p.code}')">Adaugă în coș</button>
         </div>
       </div>`;
     grid.appendChild(card);
@@ -1284,6 +1455,7 @@ function initApp() {
   loadCustomProducts();
   buildWheel();
   renderProductsGrid();
+  updateCartBadge();
   if (location.hash) handleHash();
 }
 
@@ -1492,6 +1664,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeAdmin();
   if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); openAdmin(); }
 });
+
 
 </script>
 </body>
